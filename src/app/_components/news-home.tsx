@@ -1,15 +1,21 @@
 import { Article } from "@/interface/news";
-import { getNewApi } from "@/lib/Api";
+import { getNewsApi } from "@/lib/Api";
+import Link from "next/link";
+import { createSlug } from "@/lib/Api";
 
 export default async function News() {
-  let news: Article[] = [];
-  let errorMessage: String | null = null;
+  let articles: Article[] = [];
+  let errorMessage: string | null = null;
+
 
   try {
-    news = await getNewApi();
+    articles = await getNewsApi();
   } catch (error: any) {
     errorMessage = error.message;
   }
+
+  const skipNews = articles.filter(article => article.urlToImage);
+  const limitNews = skipNews.slice(0, 3);
 
     if (errorMessage) {
     return (
@@ -21,7 +27,7 @@ export default async function News() {
     );
   }
 
-  if (news.length === 0) {
+  if (articles.length === 0) {
     return (
       <div style={{ padding: '20px', textAlign: 'center' }}>
         <h1>Berita Pertanian</h1>
@@ -32,36 +38,43 @@ export default async function News() {
   }
 
   return (
-<div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '20px auto', padding: '0 20px' }}>
-      <h1 style={{ textAlign: 'center', color: '#333' }}>Berita Pertanian Terbaru</h1>
-      <hr style={{ borderColor: '#eee', margin: '20px 0' }} />
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {news.map((news) => (
-          <li key={news.url} style={{ marginBottom: '30px', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
-            {news.urlToImage && (
+
+    <section
+    className="bg-beige px-30 py-10"
+    >
+      <div
+      className=" mb-6 font-bold text-5xl"
+      >
+      <h1>News</h1>
+      </div>
+      <div
+      className="flex flex-wrap space-x-6 justify-center"
+      >
+        {limitNews.map((article => 
+          <div
+            className="w-90 h-90"
+            key={article.url}>
+                  <Link
+      href={`/posts/${createSlug(article.title)}`}
+      >
               <img
-                src={news.urlToImage}
-                alt={news.title}
-                style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }}
+                src={article.urlToImage}
+                alt={article.title}
+                className="w-90 h-50"
               />
-            )}
-            <div style={{ padding: '15px' }}>
-              <h2 style={{ fontSize: '1.5em', marginBottom: '10px' }}>
-                <a
-                  href={news.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ textDecoration: 'none', color: '#0070f3', ':hover': { textDecoration: 'underline' } }}
-                >
-                  {news.title}
-                </a>
-              </h2>
-              <p style={{ fontSize: '0.9em', color: '#555', lineHeight: '1.5' }}>{news.description}</p>
-              <p style={{ fontSize: '0.8em', color: '#777', marginTop: '10px' }}>Sumber: {news.source.name} | Tanggal: {new Date(news.publishedAt).toLocaleDateString()}</p>
-            </div>
-          </li>
+            <p>
+              {article.author}
+            </p>
+            <p
+            className="font-semibold text-xl"
+            >
+              {article.title}
+            </p>
+</Link>
+
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </section>
   );
 }

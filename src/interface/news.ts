@@ -1,15 +1,15 @@
 export interface Article {
   source: {
-    id: string | null;
+    id: string;
     name: string;
   };
-  author: string | null;
+  author: string;
   title: string;
-  description: string | null;
+  description: string;
   url: string;
-  urlToImage: string | null;
+  urlToImage: string;
   publishedAt: string;
-  content: string | null;
+  content: string;
 }
 
 export interface NewsApiResponse {

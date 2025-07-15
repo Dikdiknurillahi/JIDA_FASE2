@@ -1,8 +1,6 @@
-import { Intro } from "@/app/_components/intro";
+import { HeroNews } from "@/app/_components/HeroNews";
 import { Article } from "@/interface/news";
 import { getAllNewsWithImage } from "@/lib/Api";
-import HeroPost from "@/app/_components/hero-post";
-import Petani from "@/app/_components/petani";
 import { CardNews } from "@/app/_components/CardNews";
 import ContainerNews from "@/app/_components/ContainerNews";
 
@@ -17,7 +15,7 @@ export default async function Home() {
     errorMessage = error.message;
   }
 
-  const limitNews = articles.slice(0, 3);
+  const otherNews = articles.slice(1);
 
     if (errorMessage) {
     return (
@@ -39,12 +37,18 @@ export default async function Home() {
     );
   }
   return (
-    <main>
-      <Intro />
-      <Petani />
-      <HeroPost />
-      <ContainerNews>
-      {limitNews.map((article => 
+    <main className="mt-10">
+      <ContainerNews >
+      <HeroNews
+        key={articles[0].url}
+        title={articles[0].title}
+        author={articles[0].author}
+        urlToImage={articles[0].urlToImage}
+        description={articles[0].description}
+        publishedAt={articles[0].publishedAt}
+        source={articles[0].source.name}
+      />
+      {otherNews.map((article => 
         <CardNews
           key={article.url}
           title={article.title}
