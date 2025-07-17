@@ -1,7 +1,7 @@
 import { Article, NewsApiResponse } from "@/interface/news";
 
 export async function getNewsApi(): Promise<Article[]> {
-  const apiKey = process.env.NEWS_API_KEY;
+  const apiKey = "fa2ec2e5805440b4a1e0c408ff37a665";
   if (!apiKey) {
     throw new Error('ApiKey Error');
   }
