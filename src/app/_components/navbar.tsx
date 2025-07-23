@@ -21,9 +21,13 @@ export default function Navbar() {
         </li>
             <li>
               <Link
+      href={`/harga`} className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-white md:p-0"
+      >Harga Sayur</Link>
+        </li>
+            <li>
+              <Link
       href={`/posts`} className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-white md:p-0"
       >News</Link>
-          
         </li>
       </ul>
     </div>
