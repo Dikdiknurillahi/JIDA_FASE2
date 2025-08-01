@@ -18,9 +18,13 @@ export async function GET() {
                 pertanian.sayur_category sc ON hs.sayur_category_id = sc.id 
         `);
         return NextResponse.json(result.rows, { status: 200 });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error fetching data:', error);
-        return NextResponse.json({ error: 'Failed to fetch data', details: error.message }, { status: 500 });
+            if (error instanceof Error) {
+                return NextResponse.json({ error: 'Failed to fetch data', details: error.message }, { status: 500 });
+            } else {
+                return NextResponse.json("Terjadi kesalahan yang tidak diketahui", { status: 500 });
+            }
     } finally {
         if (client) {
             client.release();
@@ -61,12 +65,16 @@ export async function POST(request: Request) {
             { status: 201 } // Status 201 Created
         );
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error adding data:', error);
-        return NextResponse.json(
-            { error: 'Gagal menambahkan data harga sayuran.', details: error.message },
-            { status: 500 }
-        );
+                if (error instanceof Error) {
+                    return NextResponse.json(
+                        { error: 'Gagal menambahkan data harga sayuran.', details: error.message },
+                        { status: 500 }
+                    );
+            } else {
+                return NextResponse.json("Terjadi kesalahan yang tidak diketahui", { status: 500 });
+            }
     } finally {
         if (client) {
             client.release();
@@ -108,12 +116,16 @@ export async function PUT(request: Request) {
       { message: 'Data harga sayuran berhasil diupdate!', data: result.rows[0] },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error updating data:', error);
-    return NextResponse.json(
-      { error: 'Gagal update data harga sayuran.', details: error.message },
-      { status: 500 }
-    );
+            if (error instanceof Error) {
+                return NextResponse.json(
+                  { error: 'Gagal update data harga sayuran.', details: error.message },
+                  { status: 500 }
+                );
+            } else {
+                return NextResponse.json("Terjadi kesalahan yang tidak diketahui", { status: 500 });
+            }
   } finally {
     if (client) {
       client.release();
@@ -148,12 +160,16 @@ export async function DELETE(request: Request) {
             { message: 'Data harga sayuran berhasil dihapus!', data: result.rows[0] },
             { status: 200 }
         );
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error deleting data:', error);
-        return NextResponse.json(
-            { error: 'Gagal menghapus data harga sayuran.', details: error.message },
-            { status: 500 }
-        );
+                if (error instanceof Error) {
+                return NextResponse.json(
+                    { error: 'Gagal menghapus data harga sayuran.', details: error.message },
+                    { status: 500 }
+                );
+            } else {
+                return NextResponse.json("Terjadi kesalahan yang tidak diketahui", { status: 500 });
+            }
     } finally {
         if (client) {
             client.release();

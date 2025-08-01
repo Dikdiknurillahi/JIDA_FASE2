@@ -17,7 +17,11 @@ export default async function Home() {
   try {
     articles = await getAllNewsWithImage();
   } catch (error: any) {
-    errorMessage = error.message;
+            if (error instanceof Error) {
+              errorMessage = error.message;
+                } else {
+                    errorMessage = "Terjadi kesalahan yang tidak diketahui";
+                }
   }
 
   const limitNews = articles.slice(0, 3);
