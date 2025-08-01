@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { GetHargaApi, UpdateHargaSayuran } from "@/lib/harga/api";
 
@@ -19,17 +18,23 @@ export default function EditHargaPage({ params }: Props) {
   });
   const [loading, setLoading] = useState(true);
 
+  // Perbaikan utama: gunakan React.use() untuk unwrapping params
+  // Ini akan mendapatkan objek params yang sudah di-resolve
+  const resolvedParams = React.use(params);
+  const id = resolvedParams.id;
+
   useEffect(() => {
     async function fetchData() {
       const data = await GetHargaApi();
-      const item = data.find((d) => d.id === Number(params.id));
+      // Gunakan variabel 'id' yang sudah di-resolve
+      const item = data.find((d) => d.id === Number(id));
       if (item) {
         const dateObj = item.tanggal ? new Date(item.tanggal) : null;
         const tanggalLocal = dateObj
-        ? new Date(dateObj.getTime() + Math.abs(dateObj.getTimezoneOffset()) * 60000)
-        .toISOString()
-        .slice(0, 10)
-        : "";
+          ? new Date(dateObj.getTime() + Math.abs(dateObj.getTimezoneOffset()) * 60000)
+              .toISOString()
+              .slice(0, 10)
+          : "";
         setForm({
           nama_sayur: item.nama_sayur,
           harga: item.harga.toString(),
@@ -39,12 +44,12 @@ export default function EditHargaPage({ params }: Props) {
       setLoading(false);
     }
     fetchData();
-  }, [params.id]);
+  }, [id]); // Pastikan dependency array menggunakan 'id' yang sudah di-resolve
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     await UpdateHargaSayuran({
-      id: Number(params.id),
+      id: Number(id), // Gunakan 'id' yang sudah di-resolve
       harga: Number(form.harga),
       tanggal: form.tanggal,
     });
