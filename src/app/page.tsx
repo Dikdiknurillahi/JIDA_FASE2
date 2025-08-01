@@ -4,7 +4,7 @@ import { getAllNewsWithImage } from "@/lib/Api";
 import HeroPost from "@/app/_components/hero-post";
 import Petani from "@/app/_components/petani";
 import { CardNews } from "@/app/_components/CardNews";
-import ContainerNews from "@/app/_components/ContainerNews";
+import {ContainerNews} from "@/app/_components/Container";
 
 export default async function Home() {
   let articles: Article[] = [];

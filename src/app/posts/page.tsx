@@ -2,7 +2,7 @@ import { HeroNews } from "@/app/_components/HeroNews";
 import { Article } from "@/interface/news";
 import { getAllNewsWithImage } from "@/lib/Api";
 import { CardNews } from "@/app/_components/CardNews";
-import ContainerNews from "@/app/_components/ContainerNews";
+import {ContainerNews} from "@/app/_components/Container";
 
 export default async function Home() {
   let articles: Article[] = [];

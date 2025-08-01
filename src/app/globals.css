@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
+
 @theme {
   --color-green :#304D30;
   --color-beige :#EEF0E5;
   --color-navbar :#163020;
   --color-sage :#B6C4B6;
 }
+
 
 /* :root {
   --background: #ffffff;

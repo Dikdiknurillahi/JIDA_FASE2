@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { createSlug } from "@/lib/Api";
 import { SetAuthor } from "@/app/_components/set-author";
-import DateFormatter from '@/app/_components/date-format';
+import {DateFormatter} from '@/app/_components/date-format';
 
 type Props = {
   title: string;

@@ -19,4 +19,11 @@ const ContainerNews = ({ children }: Props) => {
   </section>
 };
 
-export default ContainerNews;
+const Container = ({ children }: Props) => {
+  return   <section
+  className="mx-25 mt-20" >
+      {children}
+  </section>
+};
+
+export { ContainerNews, Container };

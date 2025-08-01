@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import ApexCharts from 'apexcharts';
-import { ChartSeries, HargaDataAPI } from "@/interface/chart";
+import { ChartSeries } from "@/interface/sayuran";
 
 type Props = {
   dataSeries: ChartSeries[],
@@ -15,11 +15,9 @@ function Chart({dataSeries, vegetableName}: Props) {
   const formatterIDR = new Intl.NumberFormat('id-ID', {
   style: 'currency',
   currency: 'IDR',
-  minimumFractionDigits: 0, // Opsional: jumlah digit desimal minimum
-  maximumFractionDigits: 0, // Opsional: jumlah digit desimal maksimum
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0, 
   });
-  // console.log('chart', dataSeries);
-  // console.log("Final chartSeries:", JSON.stringify(dataSeries, null, 2));
   const options = {
     series: dataSeries,
     chart: {

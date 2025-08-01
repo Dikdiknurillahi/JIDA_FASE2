@@ -1,5 +1,5 @@
 import { ButtonBack } from '@/app/_components/button';
-import DateFormatter from '@/app/_components/date-format';
+import {DateFormatter} from '@/app/_components/date-format';
 import { getArticleBySlug } from '@/lib/Api'; 
 import { notFound } from 'next/navigation';
 
