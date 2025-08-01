@@ -1,4 +1,4 @@
 {
-  "buildCommand": "pnpm prisma generate && pnpm build",
-  "installCommand": "pnpm install && pnpm prisma generate"
+  "buildCommand": "npm prisma generate && npm build",
+  "installCommand": "npm install && npm prisma generate"
 }
