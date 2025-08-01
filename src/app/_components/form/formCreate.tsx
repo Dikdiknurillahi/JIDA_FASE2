@@ -6,7 +6,6 @@ import { SelectInput} from "@/app/_components/form/form"; // Pastikan path benar
 import NumberForm from './number-form';
 import DatePicker from './date-picker';
 import {Button} from "@/app/_components/button"; // Pastikan path benar
-import { DataHargaSayuran, CategorySayuran, Daerah } from "@/interface/sayuran"; // Impor fungsi simpan dan tipe data
 import { CreateHargaSayuran } from '@/lib/harga/api';
 
 interface HargaFormProps {
@@ -57,7 +56,7 @@ export default function HargaForm({ categorySayurOptions, daerahOptions }: Harga
       setHarga('');
       setTanggal('');
 
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error submitting data:", err);
       setError(`Gagal menyimpan data: ${err.message || 'Terjadi kesalahan tidak dikenal.'}`);
     } finally {

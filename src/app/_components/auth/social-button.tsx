@@ -1,4 +1,4 @@
-import { GoogleOutlined, GithubOutlined } from '@ant-design/icons';
+import { GoogleOutlined} from '@ant-design/icons';
 import {signIn} from '@/auth';
 
 export const GoogleButton = () => {

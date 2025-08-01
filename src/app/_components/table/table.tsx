@@ -14,7 +14,7 @@ export default function Table() {
             try {
                 const result = await GetHargaApi();
                 setData(result);
-            } catch (err: any) {
+            } catch (err: unknown) {
                 setError(err.message);
             } finally {
                 setLoading(false);
@@ -28,7 +28,7 @@ export default function Table() {
       try {
         await DeleteHargaSayuran(id);
         setData((prev) => prev.filter((item) => item.id !== id));
-      } catch (err: any) {
+      } catch (err: unknown) {
         alert('Gagal menghapus data: ' + err.message);
       }
     }

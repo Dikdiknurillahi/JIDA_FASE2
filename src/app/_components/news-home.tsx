@@ -10,7 +10,7 @@ export default async function News() {
 
   try {
     articles = await getNewsApi();
-  } catch (error: any) {
+  } catch (error: unknown) {
     errorMessage = error.message;
   }
 

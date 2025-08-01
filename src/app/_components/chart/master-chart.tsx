@@ -4,7 +4,7 @@ const Chart = dynamic(() => import('@/app/_components/chart/charts'), { ssr: fal
 import { useState, useEffect } from 'react';
 import { DataHargaSayuran, VegetableName, ChartSeries} from "@/interface/sayuran";
 import { GetHargaApi } from '@/lib/harga/api';
-import { sortChart, sortCategories } from '@/lib/sortdata';
+import { sortChart} from '@/lib/sortdata';
 
 
 export default function MasterChart() {
@@ -17,8 +17,8 @@ export default function MasterChart() {
             try {
                 const result = await GetHargaApi();
                 setData(result);
-            } catch (err: unknown) {
-                setError(err.message);
+            } catch (error: unknown) {
+                setError(error.message);
             } finally {
                 setLoading(false);
             }
@@ -27,13 +27,6 @@ export default function MasterChart() {
     }, []);
 
     const chartSeries:VegetableName = sortChart(data);
-    const categories = sortCategories(data);
-
-    
-    Object.entries(chartSeries).map(([vegetableName, areaMap]) => {
-        const chartData: ChartSeries[] = Object.values(areaMap);
-        console.log(chartData);
-    });
 
     if (loading) return <div className='mt-20'>Loading data...</div>;
     if (error) return <div className='mt-20'>Error: {error}</div>;
