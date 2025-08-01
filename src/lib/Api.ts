@@ -21,7 +21,11 @@ export async function getNewsApi(): Promise<Article[]> {
     return data.articles;
   } catch(error: any) {
     console.error("Error in getAgriculturalNews:", error.message);
-    throw new Error(`Gagal mengambil data berita pertanian: ${error.message}`);
+        if (error instanceof Error) {
+          throw new Error(`Gagal mengambil data berita pertanian: ${error.message}`);
+        } else {
+          throw new Error(`Gagal mengambil data berita pertanian: Terjadi kesalahan yang tidak diketahui`);
+                }
   }
 }
 
@@ -32,7 +36,11 @@ export async function getAllNewsWithImage(): Promise<Article[]> {
     return articlesWithImages;
   } catch (error: any) {
     console.error("Error in getAllAgriculturalArticlesWithImages (data processing):", error.message);
-    throw error;
+            if (error instanceof Error) {
+          throw new Error(`Gagal mengambil data berita pertanian: ${error.message}`);
+        } else {
+          throw new Error(`Gagal mengambil data berita pertanian: Terjadi kesalahan yang tidak diketahui`);
+                }
   }
 }
 
@@ -45,7 +53,11 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     return foundArticle || null; 
   } catch (error: any) {
     console.error(`Error finding article by slug "${slug}":`, error.message);
-    return null;
+            if (error instanceof Error) {
+              return null;
+            } else {
+          return null;
+                }
   }
 }
 

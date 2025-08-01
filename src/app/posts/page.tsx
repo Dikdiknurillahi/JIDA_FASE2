@@ -12,7 +12,11 @@ export default async function Home() {
   try {
     articles = await getAllNewsWithImage();
   } catch (error: unknown) {
-    errorMessage = error.message;
+    if (error instanceof Error) {
+              errorMessage = error.message;
+                } else {
+                    errorMessage = "Terjadi kesalahan yang tidak diketahui";
+                }
   }
 
   const otherNews = articles.slice(1);

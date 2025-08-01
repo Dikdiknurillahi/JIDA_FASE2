@@ -12,9 +12,13 @@ export async function GetHargaApi(): Promise<DataHargaSayuran[]> {
   }
   const result: DataHargaSayuran[] = await response.json();
     return result;
-    } catch (err: any) {
-    console.error("Error in getHargaSayurApi (data processing):", err.message);
-    throw err;
+    } catch (error: any) {
+    console.error("Error in getHargaSayurApi (data processing):", error.message);
+        if (error instanceof Error) {
+      throw error;
+    } else {
+      throw error  = "Terjadi kesalahan yang tidak diketahui";
+                }
     } 
 }
   
@@ -41,9 +45,13 @@ export async function CreateHargaSayuran(data: {
 
         const result: { message: string, data: DataHargaSayuran } = await response.json();
         return result.data; // Mengembalikan data yang baru saja dibuat
-    } catch (err: any) {
-        console.error("Error in CreateHargaSayuran (API call):", err.message);
-        throw err;
+    } catch (error: any) {
+        console.error("Error in CreateHargaSayuran (API call):", error.message);
+            if (error instanceof Error) {
+      throw error;
+    } else {
+      throw error  = "Terjadi kesalahan yang tidak diketahui";
+                }
     }
 }
 
@@ -84,8 +92,12 @@ export async function DeleteHargaSayuran(id: number): Promise<DataHargaSayuran> 
 
         const result: { message: string, data: DataHargaSayuran } = await response.json();
         return result.data;
-    } catch (err: any) {
-        console.error("Error in DeleteHargaSayuran (API call):", err.message);
-        throw err;
+    } catch (error: any) {
+        console.error("Error in DeleteHargaSayuran (API call):", error.message);
+            if (error instanceof Error) {
+      throw error;
+    } else {
+      throw error  = "Terjadi kesalahan yang tidak diketahui";
+                }
     }
 }
