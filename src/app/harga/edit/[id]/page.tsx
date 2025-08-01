@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { GetHargaApi, UpdateHargaSayuran } from "@/lib/harga/api";
 
-type Props {
+type Props = {
   params: {
     id: string;
   };
