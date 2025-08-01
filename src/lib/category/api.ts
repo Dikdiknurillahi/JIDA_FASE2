@@ -2,8 +2,7 @@ import { CategorySayuran } from "@/interface/sayuran";
 
 export async function GetCategoryApi(): Promise<CategorySayuran[]> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-    const response = await fetch(`${baseUrl}api/category`, {
+    const response = await fetch(`api/category`, {
     next: {revalidate:3600}
   });
   if (!response.ok) {
