@@ -18,7 +18,11 @@ export default function MasterChart() {
                 const result = await GetHargaApi();
                 setData(result);
             } catch (error: unknown) {
+                if (error instanceof Error) {
                 setError(error.message);
+            } else {
+                setError("Terjadi kesalahan yang tidak diketahui");
+            }
             } finally {
                 setLoading(false);
             }

@@ -56,9 +56,14 @@ export default function HargaForm({ categorySayurOptions, daerahOptions }: Harga
       setHarga('');
       setTanggal('');
 
-    } catch (err: unknown) {
-      console.error("Error submitting data:", err);
-      setError(`Gagal menyimpan data: ${err.message || 'Terjadi kesalahan tidak dikenal.'}`);
+    } catch (error: unknown) {
+      console.error("Error submitting data:", error);
+      if (error instanceof Error) {
+                setError(`Gagal menyimpan data: ${error.message}`);
+            } else {
+                setError("Terjadi kesalahan yang tidak diketahui");
+            }
+      
     } finally {
       setLoading(false);
     }

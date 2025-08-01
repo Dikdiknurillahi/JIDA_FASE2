@@ -14,8 +14,12 @@ export default function Table() {
             try {
                 const result = await GetHargaApi();
                 setData(result);
-            } catch (err: unknown) {
-                setError(err.message);
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                setError(error.message);
+            } else {
+                setError("Terjadi kesalahan yang tidak diketahui");
+            }
             } finally {
                 setLoading(false);
             }
@@ -28,8 +32,13 @@ export default function Table() {
       try {
         await DeleteHargaSayuran(id);
         setData((prev) => prev.filter((item) => item.id !== id));
-      } catch (err: unknown) {
-        alert('Gagal menghapus data: ' + err.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+                alert('Gagal menghapus data: ' + error.message);
+            } else {
+                alert('Gagal menghapus data: Terjadi kesalahan yang tidak diketahui');
+            }
+        
       }
     }
   }

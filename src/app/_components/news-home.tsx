@@ -11,7 +11,12 @@ export default async function News() {
   try {
     articles = await getNewsApi();
   } catch (error: unknown) {
-    errorMessage = error.message;
+    if (error instanceof Error) {
+                errorMessage = error.message;
+            } else {
+                errorMessage ="Terjadi kesalahan yang tidak diketahui";
+            }
+    
   }
 
   const skipNews = articles.filter(article => article.urlToImage);
