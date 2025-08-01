@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { GetHargaApi, UpdateHargaSayuran } from "@/lib/harga/api";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
-}
+  }>;
+};
 
 export default function EditHargaPage({ params }: Props) {
   const router = useRouter();

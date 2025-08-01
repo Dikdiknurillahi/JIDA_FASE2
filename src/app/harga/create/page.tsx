@@ -12,7 +12,7 @@ export default async function CreatHarga() {
   try {
     categorySayur = await GetCategoryApi();
     daerah = await GetDaerahApi();
-  } catch (error: any) {
+  } catch (error: unknown) {
     errorMessage = error.message;
   }
 
