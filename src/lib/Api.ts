@@ -19,7 +19,7 @@ export async function getNewsApi(): Promise<Article[]> {
 
     const data: NewsApiResponse = await response.json();
     return data.articles;
-  } catch(error: any) {
+  } catch(error: unknown) {
     console.error("Error in getAgriculturalNews:", error.message);
         if (error instanceof Error) {
           throw new Error(`Gagal mengambil data berita pertanian: ${error.message}`);
@@ -34,7 +34,7 @@ export async function getAllNewsWithImage(): Promise<Article[]> {
     const allArticles = await getNewsApi();
     const articlesWithImages = allArticles.filter(article => article.urlToImage);
     return articlesWithImages;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in getAllAgriculturalArticlesWithImages (data processing):", error.message);
             if (error instanceof Error) {
           throw new Error(`Gagal mengambil data berita pertanian: ${error.message}`);
@@ -51,7 +51,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     const foundArticle = allArticles.find(article => createSlug(article.title) === slug);
     
     return foundArticle || null; 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(`Error finding article by slug "${slug}":`, error.message);
             if (error instanceof Error) {
               return null;

@@ -92,7 +92,7 @@ export async function DeleteHargaSayuran(id: number): Promise<DataHargaSayuran> 
 
         const result: { message: string, data: DataHargaSayuran } = await response.json();
         return result.data;
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error in DeleteHargaSayuran (API call):", error.message);
             if (error instanceof Error) {
       throw error;
