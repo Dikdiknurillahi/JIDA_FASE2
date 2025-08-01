@@ -41,6 +41,11 @@ export default async function Navbar() {
               href={`/posts`} className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-white md:p-0">
               News</Link>
             </li>
+            <li>
+              <Link
+              href={`/redux`} className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-white md:p-0">
+              Redux</Link>
+            </li>
           </ul>
         </div>
         <div className="flex items-center space-x-3 ">

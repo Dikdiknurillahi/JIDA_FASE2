@@ -70,7 +70,7 @@ export default async function ArticleDetailPage({ params }: ArticleDetailPagePro
           </p>
         </div>
       </div>
-      {ButtonBack(article.url)}
+      <ButtonBack url={article.url}/>
     </section>
   );
 }

@@ -8,6 +8,10 @@ type button = {
         name:string
 }
 
+interface ButtonBackProps {
+url: string;
+}
+
 export { ButtonBack, Button, ButtonRegister, ButtonLogin };
 
 const ButtonRegister = () => {
@@ -24,7 +28,7 @@ const ButtonLogin = () => {
         );
 };
 
-const ButtonBack = (url: string) => {
+const ButtonBack = ({url} : ButtonBackProps) => {
         return (
                 <div className="flex justify-around mt-9">
         <Link className="w-30" color="primary" href="/posts">
