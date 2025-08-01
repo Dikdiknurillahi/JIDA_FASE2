@@ -13,7 +13,11 @@ export default async function CreatHarga() {
     categorySayur = await GetCategoryApi();
     daerah = await GetDaerahApi();
   } catch (error: unknown) {
-    errorMessage = error.message;
+    if (error instanceof Error) {
+              errorMessage = error.message;
+            } else {
+              errorMessage = "Terjadi kesalahan yang tidak diketahui";
+            }
   }
 
   const changeNameDaerah = daerah.map(item => ({
