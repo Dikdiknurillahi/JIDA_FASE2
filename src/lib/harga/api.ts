@@ -3,7 +3,7 @@ import { DataHargaSayuran } from "@/interface/sayuran";
 export async function GetHargaApi(): Promise<DataHargaSayuran[]> {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
-    const response = await fetch(`${baseUrl}api/harga`, {
+    const response = await fetch(`api/harga`, {
     next: {revalidate:3600}
   });
   if (!response.ok) {
