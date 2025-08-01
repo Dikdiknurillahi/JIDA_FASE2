@@ -7,7 +7,7 @@ function sortCategories(data: DataHargaSayuran[]) {
     return allUniqueVegetables;
 }
 
-function sortChart(data: DataHargaSayuran[]) {
+function sortChart(data: DataHargaSayuran[]): VegetableName {
     const { chartSeries} = useMemo(() => {
         if (data.length === 0) {
             return { chartSeries: []};

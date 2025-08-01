@@ -6,7 +6,7 @@ import { ChartSeries } from "@/interface/sayuran";
 type Props = {
   dataSeries: ChartSeries[],
   vegetableName: string
-  Date: string
+  // Date: string
 }
 
 function Chart({dataSeries, vegetableName}: Props) {
