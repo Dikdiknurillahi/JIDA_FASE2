@@ -11,7 +11,7 @@ export default async function Home() {
 
   try {
     articles = await getAllNewsWithImage();
-  } catch (error: any) {
+  } catch (error: unknown) {
     errorMessage = error.message;
   }
 

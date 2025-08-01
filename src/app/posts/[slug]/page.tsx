@@ -4,9 +4,9 @@ import { getArticleBySlug } from '@/lib/Api';
 import { notFound } from 'next/navigation';
 
 interface ArticleDetailPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: ArticleDetailPageProps) {
