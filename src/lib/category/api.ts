@@ -2,7 +2,7 @@ import { CategorySayuran } from "@/interface/sayuran";
 
 export async function GetCategoryApi(): Promise<CategorySayuran[]> {
   try {
-    const response = await fetch(`api/category`, {
+    const response = await fetch(`/api/category`, {
     next: {revalidate:3600}
   });
   if (!response.ok) {
