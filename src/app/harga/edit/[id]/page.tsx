@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { GetHargaApi, UpdateHargaSayuran } from "@/lib/harga/api";
 
-export default function EditHargaPage({ params }: { params: { id: string } }) {
+type Props {
+  params: {
+    id: string;
+  };
+}
+
+export default function EditHargaPage({ params }: Props) {
   const router = useRouter();
   const [form, setForm] = useState({
     nama_sayur: "",
