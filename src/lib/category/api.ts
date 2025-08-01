@@ -12,8 +12,7 @@ export async function GetCategoryApi(): Promise<CategorySayuran[]> {
   }
   const result: CategorySayuran[] = await response.json();
     return result;
-    } catch (error: any) {
-    console.error("Error in getHargaSayurApi (data processing):", error.message);
+    } catch (error: unknown) {
     if (error instanceof Error) {
       throw error;
     } else {

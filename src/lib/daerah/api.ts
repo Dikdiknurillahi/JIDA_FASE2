@@ -13,7 +13,6 @@ export async function GetDaerahApi(): Promise<Daerah[]> {
   const result: Daerah[] = await response.json();
     return result;
     } catch (error: unknown) {
-    console.error("Error in getHargaSayurApi (data processing):", error.message);
         if (error instanceof Error) {
       throw error;
     } else {
