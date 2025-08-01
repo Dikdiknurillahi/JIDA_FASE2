@@ -5,11 +5,14 @@ import HeroPost from "@/app/_components/hero-post";
 import Petani from "@/app/_components/petani";
 import { CardNews } from "@/app/_components/CardNews";
 import {ContainerNews} from "@/app/_components/Container";
+import { auth } from "@/auth";
 
 export default async function Home() {
   let articles: Article[] = [];
   let errorMessage: string | null = null;
 
+  const session = await auth();
+  console.log(JSON.stringify(session));
 
   try {
     articles = await getAllNewsWithImage();

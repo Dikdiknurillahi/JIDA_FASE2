@@ -1,11 +1,28 @@
+"use client";
+
 import Link from "next/link";
+import { useFormStatus } from 'react-dom';
 
 type button = {
         type: "submit" | "reset" | "button",
         name:string
 }
 
-export { ButtonBack, Button };
+export { ButtonBack, Button, ButtonRegister, ButtonLogin };
+
+const ButtonRegister = () => {
+        const { pending } = useFormStatus();
+        return (
+                <button type='submit' disabled={pending} className='w-full text-white bg-blue-700 font-medium rounded-lg px-5 py-2.5 text-center uppercase hover:bg-blue-800'>{pending ? "Registering..." : "Register"}</button>
+        );
+};
+
+const ButtonLogin = () => {
+        const { pending } = useFormStatus();
+        return (
+                <button type='submit' disabled={pending} className='w-full text-white bg-blue-700 font-medium rounded-lg px-5 py-2.5 text-center uppercase hover:bg-blue-800'>{pending ? "Authenticating..." : "Login"}</button>
+        );
+};
 
 const ButtonBack = (url: string) => {
         return (
