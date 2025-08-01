@@ -2,7 +2,8 @@ import { Daerah } from "@/interface/sayuran";
 
 export async function GetDaerahApi(): Promise<Daerah[]> {
   try {
-    const response = await fetch(`/api/daerah`, {
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+    const response = await fetch(`${baseUrl}/api/daerah`, {
     next: {revalidate:3600}
   });
   if (!response.ok) {

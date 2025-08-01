@@ -2,8 +2,8 @@ import { DataHargaSayuran } from "@/interface/sayuran";
 
 export async function GetHargaApi(): Promise<DataHargaSayuran[]> {
   try {
-
-    const response = await fetch(`/api/harga`, {
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL
+    const response = await fetch(`${baseUrl}/api/harga`, {
     next: {revalidate:3600}
   });
   if (!response.ok) {
@@ -29,8 +29,8 @@ export async function CreateHargaSayuran(data: {
     tanggal?: string; // Opsional
 }): Promise<DataHargaSayuran> {
     try {
-    ;
-        const response = await fetch(`/api/harga`, {
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+        const response = await fetch(`${baseUrl}/api/harga`, {
             method: 'POST', // Penting: metode POST
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,8 @@ export async function UpdateHargaSayuran(data: {
   harga: number;
   tanggal?: string;
 }): Promise<DataHargaSayuran> {
-  const response = await fetch(`/api/harga`, {
+  const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const response = await fetch(`${baseUrl}/api/harga`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -75,8 +76,8 @@ export async function UpdateHargaSayuran(data: {
 
 export async function DeleteHargaSayuran(id: number): Promise<DataHargaSayuran> {
     try {
-    ;
-        const response = await fetch(`/api/harga`, {
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+        const response = await fetch(`${baseUrl}/api/harga`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
